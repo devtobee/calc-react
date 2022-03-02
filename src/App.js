@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import 'animate.css'
+import Buttons from './Buttons'
+import { useGlobalContext } from './context'
 function App() {
+  const { operation, currentOperand, prevOperand } = useGlobalContext()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <section
+      className='calculator-grid animate__animated animate__jackInTheBox'
+      onKeyPress={(e) => console.log(e)}
+    >
+      <div className='output animate__animated animate__backInDown'>
+        <div data-previous-operand className='previous-operand'>
+          {prevOperand} {operation}
+        </div>
+        <div data-current-operand className='current-operand'>
+          {currentOperand}
+        </div>
+      </div>
+      <Buttons />
+    </section>
+  )
 }
 
-export default App;
+export default App
